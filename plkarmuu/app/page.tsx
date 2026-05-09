@@ -54,6 +54,8 @@ const galleryImages = [
   { id: 2, src: "/images/2.jpeg", alt: "ข้าวขาหมู" },
   { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
   { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
+  { id: 5, src: "/images/2.webp", alt: "เมนูพิเศษษษ" },
+  { id: 6, src: "/images/1.jpeg", alt: "เมนูพิเศษษ" },
 ];
 
 // duplicate for seamless loop

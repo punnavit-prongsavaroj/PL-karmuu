@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
+import { motion } from "framer-motion"; // ต้องติดตั้ง: npm install framer-motion
 
 // ==========================================
 // 🎨 ธีมสีของร้าน
@@ -47,19 +48,21 @@ const Icon = {
 };
 
 // ==========================================
-// 🖼️ Gallery รูปภาพ
+// 🖼️ ข้อมูลรูปภาพ (เพิ่มรูปเดิมซ้ำเพื่อทำ Loop ไหลลื่น)
 // ==========================================
 const galleryImages = [
-  { id: 1, src: "/images/dish-1.jpg", alt: "ขาหมูเยอรมัน", title: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/dish-2.jpg", alt: "ข้าวขาหมู", title: "สูตรต้นตำรับ" },
-  { id: 3, src: "/images/interior.jpg", alt: "บรรยากาศร้าน", title: "บรรยากาศร้าน" },
-  { id: 4, src: "/images/dish-3.jpg", alt: "เมนูพิเศษ", title: "เมนูพิเศษ" },
+  { id: 1, src: "/images/1.webp" },
+  { id: 2, src: "/images/2.webp" },
+  { id: 3, src: "/images/3.webp" },
+  { id: 4, src: "/images/4.webp" },
 ];
+
+// รวมรูปภาพ 2 ชุดเพื่อให้เลื่อนวนลูปได้ไม่สะดุด
+const duplicatedImages = [...galleryImages, ...galleryImages];
 
 export default function LandingPage() {
   const router = useRouter();
   const [hovered, setHovered] = useState<string | null>(null);
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   const [storeConfig, setStoreConfig] = useState({
     phone: "02-123-4567",
@@ -77,7 +80,6 @@ export default function LandingPage() {
     return () => unsub();
   }, []);
 
-  // 📌 จัดเรียง options โดยเอา 'web' ไว้แรกสุด
   const options = [
     {
       id: "web",
@@ -106,14 +108,14 @@ export default function LandingPage() {
     <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ background: theme.dark }}>
       {/* Background Gradient */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `radial-gradient(ellipse at top, rgba(201,168,76,0.12) 0%, ${theme.dark} 75%)`,
         }}
       />
 
       {/* Header */}
-      <header className="p-6 md:px-12 flex justify-between items-center relative z-10">
+      <header className="p-6 md:px-12 flex justify-between items-center relative z-20">
         <div>
           <div className="text-2xl font-serif text-[#F5F0E8]">PorLor</div>
           <div className="text-[10px] tracking-[4px] mt-1" style={{ color: theme.textSecondary }}>
@@ -131,51 +133,57 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 relative z-10">
+      <div className="flex-1 flex flex-col items-center justify-center text-center relative z-10 py-10">
         <div className="text-[10px] md:text-xs tracking-[6px] mb-4 uppercase" style={{ color: theme.gold }}>
           Some chase dreams. I chase pork leg
         </div>
-        <h1 className="text-4xl md:text-7xl font-serif mb-4" style={{ color: theme.textPrimary }}>
+        <h1 className="text-5xl md:text-7xl font-serif mb-4" style={{ color: theme.textPrimary }}>
           PorLor Karmuu
         </h1>
-        <p className="max-w-md mx-auto mb-10 text-sm md:text-base px-6" style={{ color: theme.textSecondary }}>
-          ประสบการณ์ขาหมูแท้ที่ถ่ายทอดสูตรจากรุ่นสู่รุ่น
-          <br /> ในบรรยากาศร้านที่อบอุ่น
+        <p className="max-w-md mx-auto mb-12 text-sm md:text-base px-6" style={{ color: theme.textSecondary }}>
+          ประสบการณ์ขาหมูแท้ที่ถ่ายทอดสูตรจากรุ่นสู่รุ่น ในบรรยากาศร้านที่อบอุ่น
         </p>
 
-        {/* Gallery Section */}
-        <div className="w-full max-w-4xl mb-12 px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {galleryImages.map((img) => (
+        {/* 📌 Infinite Scrolling Gallery (บานเลื่อนวนลูป) */}
+        <div className="w-full relative overflow-hidden mb-16 py-4">
+          <motion.div 
+            className="flex gap-4 px-4"
+            animate={{
+              x: ["0%", "-50%"] // เลื่อนจากจุดเริ่มไปครึ่งนึง (เพราะเราเบิ้ลรูปไว้)
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20, // ความเร็วในการเลื่อน (ยิ่งมากยิ่งช้า)
+                ease: "linear",
+              },
+            }}
+            style={{ width: "fit-content" }}
+          >
+            {duplicatedImages.map((img, index) => (
               <div
-                key={img.id}
-                className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square"
-                onMouseEnter={() => setHoveredImage(img.id)}
-                onMouseLeave={() => setHoveredImage(null)}
-                style={{
-                  border: `1px solid ${hoveredImage === img.id ? theme.gold : theme.darkBorder}`,
-                  transition: "all 0.4s ease",
-                }}
+                key={`${img.id}-${index}`}
+                className="relative flex-shrink-0 w-[200px] md:w-[280px] aspect-[4/5] rounded-2xl overflow-hidden border border-[#2A2A2A]"
               >
                 <img
                   src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                  style={{ transform: hoveredImage === img.id ? "scale(1.1)" : "scale(1)" }}
+                  alt="Gallery"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                  <p className="text-[10px] md:text-xs font-medium" style={{ color: theme.textPrimary }}>
-                    {img.title}
-                  </p>
-                </div>
+                {/* Overlay บางๆ ให้ดูหรู */}
+                <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-500" />
               </div>
             ))}
-          </div>
+          </motion.div>
+          
+          {/* แสง Gradient ปิดหัวท้ายเพื่อให้ดู Fade หายไป */}
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10" />
         </div>
 
-        {/* 📌 New Grid Layout for Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-2">
+        {/* 📌 Grid Layout for Buttons */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-4">
           {options.map((opt) => (
             <button
               key={opt.id}
@@ -213,7 +221,7 @@ export default function LandingPage() {
                 {opt.icon}
               </div>
               <div className="text-base md:text-xl font-bold mb-1">{opt.label}</div>
-              <div className="text-[10px] md:text-xs opacity-70 max-w-[120px] md:max-w-none">
+              <div className="text-[10px] md:text-xs opacity-70">
                 {opt.sub}
               </div>
             </button>

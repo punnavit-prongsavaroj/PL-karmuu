@@ -50,10 +50,10 @@ const Icon = {
 // 🖼️ Gallery รูปภาพ
 // ==========================================
 const galleryImages = [
-  { id: 1, src: "/images/dish-1.jpg", alt: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/dish-2.jpg", alt: "ข้าวขาหมู" },
-  { id: 3, src: "/images/interior.jpg", alt: "บรรยากาศร้าน" },
-  { id: 4, src: "/images/dish-3.jpg", alt: "เมนูพิเศษ" },
+  { id: 1, src: "images/1.webp", alt: "ขาหมูเยอรมัน" },
+  { id: 2, src: "images/2.webp", alt: "ข้าวขาหมู" },
+  { id: 3, src: "images/3.webp", alt: "บรรยากาศร้าน" },
+  { id: 4, src: "images/4.webp", alt: "เมนูพิเศษ" },
 ];
 
 // duplicate for seamless loop

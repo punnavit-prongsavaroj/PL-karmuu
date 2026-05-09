@@ -49,12 +49,7 @@ const Icon = {
 // ==========================================
 // 🖼️ Gallery รูปภาพ
 // ==========================================
-const galleryImages = [
-  { id: 1, src: "/images/1.webp", alt: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/2.webp", alt: "ข้าวขาหมู" },
-  { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
-  { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
-];
+
 
 // duplicate for seamless loop
 const carouselImages = [...galleryImages, ...galleryImages];
@@ -102,7 +97,12 @@ export default function LandingPage() {
       action: () => window.open(storeConfig.googleMapsUrl, "_blank"),
     },
   ];
-
+const galleryImages = [
+  { id: 1, src: "/images/1.webp", alt: "ขาหมูเยอรมัน" },
+  { id: 2, src: "/images/2.webp", alt: "ข้าวขาหมู" },
+  { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
+  { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
+];
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ background: theme.dark }}>
       {/* Background Gradient */}

@@ -116,7 +116,7 @@ export default function LandingPage() {
       {/* Header */}
       <header className="p-6 md:px-12 flex justify-between items-center relative z-10">
         <div>
-          <div className="text-2xl font-serif text-[#F5F0E8]">PorLor</div>
+          <div className="text-2xl font-serif text-[#F5F0E8]">ปล</div>
           <div className="text-[10px] tracking-[4px] mt-1" style={{ color: theme.textSecondary }}>
             RESTAURANT
           </div>
@@ -137,7 +137,7 @@ export default function LandingPage() {
           Some chase dreams. I chase pork leg
         </div>
         <h1 className="text-4xl md:text-7xl font-serif mb-4" style={{ color: theme.textPrimary }}>
-          PorLor Karmuu
+          ปล.ข้าวขาหมู
         </h1>
         <p className="max-w-md mx-auto mb-10 text-sm md:text-base px-6" style={{ color: theme.textSecondary }}>
           ประสบการณ์ขาหมูแท้ที่ถ่ายทอดสูตรจากรุ่นสู่รุ่น

@@ -50,16 +50,18 @@ const Icon = {
 // 🖼️ Gallery รูปภาพ
 // ==========================================
 const galleryImages = [
-  { id: 1, src: "/images/dish-1.jpg", alt: "ขาหมูเยอรมัน", title: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/dish-2.jpg", alt: "ข้าวขาหมู", title: "สูตรต้นตำรับ" },
-  { id: 3, src: "/images/interior.jpg", alt: "บรรยากาศร้าน", title: "บรรยากาศร้าน" },
-  { id: 4, src: "/images/dish-3.jpg", alt: "เมนูพิเศษ", title: "เมนูพิเศษ" },
+  { id: 1, src: "/images/dish-1.jpg", alt: "ขาหมูเยอรมัน" },
+  { id: 2, src: "/images/dish-2.jpg", alt: "ข้าวขาหมู" },
+  { id: 3, src: "/images/interior.jpg", alt: "บรรยากาศร้าน" },
+  { id: 4, src: "/images/dish-3.jpg", alt: "เมนูพิเศษ" },
 ];
+
+// duplicate for seamless loop
+const carouselImages = [...galleryImages, ...galleryImages];
 
 export default function LandingPage() {
   const router = useRouter();
   const [hovered, setHovered] = useState<string | null>(null);
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   const [storeConfig, setStoreConfig] = useState({
     phone: "02-123-4567",
@@ -77,7 +79,6 @@ export default function LandingPage() {
     return () => unsub();
   }, []);
 
-  // 📌 จัดเรียง options โดยเอา 'web' ไว้แรกสุด
   const options = [
     {
       id: "web",
@@ -143,38 +144,55 @@ export default function LandingPage() {
           <br /> ในบรรยากาศร้านที่อบอุ่น
         </p>
 
-        {/* Gallery Section */}
-        <div className="w-full max-w-4xl mb-12 px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {galleryImages.map((img) => (
+        {/* ==========================================
+            🖼️ Infinite Carousel (CSS-only animation)
+        ========================================== */}
+        <div
+          className="w-full max-w-4xl mb-12 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        >
+          <style>{`
+            @keyframes carousel-scroll {
+              0%   { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .carousel-track {
+              display: flex;
+              gap: 12px;
+              width: max-content;
+              animation: carousel-scroll 18s linear infinite;
+            }
+            .carousel-track:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+
+          <div className="carousel-track">
+            {carouselImages.map((img, idx) => (
               <div
-                key={img.id}
-                className="relative group cursor-pointer overflow-hidden rounded-xl aspect-square"
-                onMouseEnter={() => setHoveredImage(img.id)}
-                onMouseLeave={() => setHoveredImage(null)}
+                key={idx}
+                className="flex-shrink-0 overflow-hidden rounded-xl"
                 style={{
-                  border: `1px solid ${hoveredImage === img.id ? theme.gold : theme.darkBorder}`,
-                  transition: "all 0.4s ease",
+                  width: "220px",
+                  height: "220px",
+                  border: `1px solid ${theme.darkBorder}`,
                 }}
               >
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                  style={{ transform: hoveredImage === img.id ? "scale(1.1)" : "scale(1)" }}
+                  className="w-full h-full object-cover"
+                  draggable={false}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                  <p className="text-[10px] md:text-xs font-medium" style={{ color: theme.textPrimary }}>
-                    {img.title}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* 📌 New Grid Layout for Buttons */}
+        {/* Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-2">
           {options.map((opt) => (
             <button

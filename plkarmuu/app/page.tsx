@@ -51,7 +51,7 @@ const Icon = {
 // ==========================================
 const galleryImages = [
   { id: 1, src: "/images/1.webp", alt: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/2.webp", alt: "ข้าวขาหมู" },
+  { id: 2, src: "/images/2.jpeg", alt: "ข้าวขาหมู" },
   { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
   { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
 ];

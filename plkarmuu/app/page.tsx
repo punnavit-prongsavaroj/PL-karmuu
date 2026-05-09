@@ -50,10 +50,10 @@ const Icon = {
 // 🖼️ Gallery รูปภาพ
 // ==========================================
 const galleryImages = [
-  { id: 1, src: "images/1.webp", alt: "ขาหมูเยอรมัน" },
-  { id: 2, src: "images/2.webp", alt: "ข้าวขาหมู" },
-  { id: 3, src: "images/3.webp", alt: "บรรยากาศร้าน" },
-  { id: 4, src: "images/4.webp", alt: "เมนูพิเศษ" },
+  { id: 1, src: "/images/dish-1.jpg", alt: "ขาหมูเยอรมัน" },
+  { id: 2, src: "/images/dish-2.jpg", alt: "ข้าวขาหมู" },
+  { id: 3, src: "/images/interior.jpg", alt: "บรรยากาศร้าน" },
+  { id: 4, src: "/images/dish-3.jpg", alt: "เมนูพิเศษ" },
 ];
 
 // duplicate for seamless loop
@@ -189,6 +189,53 @@ export default function LandingPage() {
             </button>
           ))}
         </div>
+        {/* ==========================================
+            🖼️ Infinite Carousel (CSS-only animation)
+        ========================================== */}
+        <div
+          className="w-full max-w-4xl mt-12 overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        >
+          <style>{`
+            @keyframes carousel-scroll {
+              0%   { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .carousel-track {
+              display: flex;
+              gap: 12px;
+              width: max-content;
+              animation: carousel-scroll 18s linear infinite;
+            }
+            .carousel-track:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+
+          <div className="carousel-track">
+            {carouselImages.map((img, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 overflow-hidden rounded-xl"
+                style={{
+                  width: "220px",
+                  height: "220px",
+                  border: `1px solid ${theme.darkBorder}`,
+                }}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
@@ -205,3 +252,4 @@ export default function LandingPage() {
       </footer>
     </div>
   );
+}

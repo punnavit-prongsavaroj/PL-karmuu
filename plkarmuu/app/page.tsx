@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
-import { motion } from "framer-motion";
 
 // ==========================================
 // 🎨 ธีมสีของร้าน
@@ -165,33 +164,28 @@ export default function LandingPage() {
 
       {/* Hero */}
       <div className="flex-1 flex flex-col items-center justify-center">
-        <motion.div
-          className="flex gap-4"
-          animate={{
-            x: ["0%", "-50%"],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 20,
-              ease: "linear",
-            },
-          }}
-        >
-          {duplicatedImages.map((img, index) => (
-            <div
-              key={`${img.id}-${index}`}
-              className="w-[200px] aspect-[4/5]"
-            >
-              <img
-                src={img.src}
-                alt={`รูป ${img.id}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </motion.div>
+        <div className="w-full relative overflow-hidden mb-16 py-4">
+  <div className="marquee flex gap-4 px-4 w-max">
+    {duplicatedImages.map((img, index) => (
+      <div
+        key={`${img.id}-${index}`}
+        className="relative flex-shrink-0 w-[200px] md:w-[280px] aspect-[4/5] rounded-2xl overflow-hidden border border-[#2A2A2A]"
+      >
+        <img
+          src={img.src}
+          alt={`ข้าวขาหมู PorLor ${img.id}`}
+          className="w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-500" />
+      </div>
+    ))}
+  </div>
+
+  {/* Fade */}
+  <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10" />
+  <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10" />
+</div>
       </div>
     </div>
   );

@@ -22,25 +22,25 @@ const theme = {
 // ==========================================
 const Icon = {
   Phone: () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 md:w-7 md:h-7">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
     </svg>
   ),
   Map: () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 md:w-7 md:h-7">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
       <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   ),
   Web: () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 md:w-7 md:h-7">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
       <circle cx="12" cy="12" r="10" />
       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
       <path d="M2 12h20" />
     </svg>
   ),
   Admin: () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 mb-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 mb-0.5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
     </svg>
   ),
@@ -104,7 +104,10 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ background: theme.dark }}>
+    <div
+      className="h-screen flex flex-col relative overflow-hidden md:min-h-screen md:h-auto"
+      style={{ background: theme.dark }}
+    >
       {/* Background Gradient */}
       <div
         className="absolute inset-0"
@@ -114,16 +117,16 @@ export default function LandingPage() {
       />
 
       {/* Header */}
-      <header className="p-6 md:px-12 flex justify-between items-center relative z-10">
+      <header className="px-5 py-3 md:px-12 md:py-6 flex justify-between items-center relative z-10 flex-shrink-0">
         <div>
-          <div className="text-2xl font-serif text-[#F5F0E8]">ปล</div>
-          <div className="text-[10px] tracking-[4px] mt-1" style={{ color: theme.textSecondary }}>
+          <div className="text-xl md:text-2xl font-serif text-[#F5F0E8]">ปล</div>
+          <div className="text-[9px] tracking-[4px] mt-0.5" style={{ color: theme.textSecondary }}>
             ข้าวขาหมู
           </div>
         </div>
         <button
           onClick={() => router.push("/admin/login")}
-          className="flex flex-col items-center text-xs opacity-50 hover:opacity-100 transition"
+          className="flex flex-col items-center text-[10px] opacity-50 hover:opacity-100 transition"
           style={{ color: theme.textSecondary }}
         >
           <Icon.Admin />
@@ -132,20 +135,20 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 relative z-10">
-        <div className="text-[10px] md:text-xs tracking-[6px] mb-4 uppercase" style={{ color: theme.gold }}>
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 relative z-10 min-h-0">
+        <div className="text-[9px] md:text-xs tracking-[6px] mb-2 md:mb-4 uppercase" style={{ color: theme.gold }}>
           Some chase dreams. I chase pork leg
         </div>
-        <h1 className="text-4xl md:text-7xl font-serif mb-4" style={{ color: theme.textPrimary }}>
+        <h1 className="text-3xl md:text-7xl font-serif mb-2 md:mb-4" style={{ color: theme.textPrimary }}>
           ปล.ข้าวขาหมู
         </h1>
-        <p className="max-w-md mx-auto mb-10 text-sm md:text-base px-6" style={{ color: theme.textSecondary }}>
+        <p className="max-w-md mx-auto mb-4 md:mb-10 text-xs md:text-base px-6 leading-relaxed" style={{ color: theme.textSecondary }}>
           ประสบการณ์ขาหมูแท้ที่ถ่ายทอดสูตรจากรุ่นสู่รุ่น
-          <br /> ในบรรยากาศร้านที่อบอุ่น
+          <br className="hidden md:block" /> ในบรรยากาศร้านที่อบอุ่น
         </p>
 
         {/* Buttons */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 w-full max-w-3xl px-3">
           {options.map((opt) => (
             <button
               key={opt.id}
@@ -153,7 +156,8 @@ export default function LandingPage() {
               onMouseEnter={() => setHovered(opt.id)}
               onMouseLeave={() => setHovered(null)}
               className={`
-                relative p-6 md:p-10 rounded-2xl flex flex-col items-center justify-center text-center transition-all duration-300 transform active:scale-95
+                relative rounded-xl md:rounded-2xl flex flex-col items-center justify-center text-center transition-all duration-300 transform active:scale-95
+                py-4 md:py-10
                 ${opt.id === "web" ? "col-span-2 md:col-span-1" : "col-span-1"}
               `}
               style={{
@@ -171,7 +175,7 @@ export default function LandingPage() {
               }}
             >
               <div
-                className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-5 transition-colors"
+                className="w-9 h-9 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-2 md:mb-5 transition-colors"
                 style={{
                   background:
                     hovered === opt.id && opt.id === "web"
@@ -182,18 +186,19 @@ export default function LandingPage() {
               >
                 {opt.icon}
               </div>
-              <div className="text-base md:text-xl font-bold mb-1">{opt.label}</div>
-              <div className="text-[10px] md:text-xs opacity-70 max-w-[120px] md:max-w-none">
+              <div className="text-sm md:text-xl font-bold mb-0.5">{opt.label}</div>
+              <div className="text-[9px] md:text-xs opacity-70 max-w-[110px] md:max-w-none leading-tight">
                 {opt.sub}
               </div>
             </button>
           ))}
         </div>
+
         {/* ==========================================
             🖼️ Infinite Carousel (CSS-only animation)
         ========================================== */}
         <div
-          className="w-full max-w-4xl mt-12 overflow-hidden"
+          className="w-full max-w-4xl mt-4 md:mt-12 overflow-hidden flex-shrink-0"
           style={{
             maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
             WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
@@ -206,7 +211,7 @@ export default function LandingPage() {
             }
             .carousel-track {
               display: flex;
-              gap: 12px;
+              gap: 8px;
               width: max-content;
               animation: carousel-scroll 18s linear infinite;
             }
@@ -219,10 +224,10 @@ export default function LandingPage() {
             {carouselImages.map((img, idx) => (
               <div
                 key={idx}
-                className="flex-shrink-0 overflow-hidden rounded-xl"
+                className="flex-shrink-0 overflow-hidden rounded-lg md:rounded-xl"
                 style={{
-                  width: "220px",
-                  height: "220px",
+                  width: "clamp(120px, 28vw, 220px)",
+                  height: "clamp(120px, 28vw, 220px)",
                   border: `1px solid ${theme.darkBorder}`,
                 }}
               >
@@ -240,10 +245,10 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer
-        className="mt-12 py-8 text-center text-[10px] md:text-xs relative z-10"
+        className="py-3 md:py-8 text-center text-[9px] md:text-xs relative z-10 flex-shrink-0"
         style={{ color: theme.textSecondary, borderTop: `1px solid ${theme.darkBorder}` }}
       >
-        <p className="mb-2">
+        <p className="mb-1">
           เปิดให้บริการทุกวัน: {storeConfig.openTime} - {storeConfig.closeTime} น.
         </p>
         <p className="opacity-60">

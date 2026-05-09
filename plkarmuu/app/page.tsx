@@ -247,7 +247,7 @@ export default function LandingPage() {
           เปิดให้บริการทุกวัน: {storeConfig.openTime} - {storeConfig.closeTime} น.
         </p>
         <p className="opacity-60">
-          {storeConfig.phone} | Sukhumvit Rd, Bangkok, Thailand
+          {storeConfig.phone} | SakonNakhon,Serithai
         </p>
       </footer>
     </div>

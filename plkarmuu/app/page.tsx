@@ -144,54 +144,6 @@ export default function LandingPage() {
           <br /> ในบรรยากาศร้านที่อบอุ่น
         </p>
 
-        {/* ==========================================
-            🖼️ Infinite Carousel (CSS-only animation)
-        ========================================== */}
-        <div
-          className="w-full max-w-4xl mb-12 overflow-hidden"
-          style={{
-            maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          }}
-        >
-          <style>{`
-            @keyframes carousel-scroll {
-              0%   { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .carousel-track {
-              display: flex;
-              gap: 12px;
-              width: max-content;
-              animation: carousel-scroll 18s linear infinite;
-            }
-            .carousel-track:hover {
-              animation-play-state: paused;
-            }
-          `}</style>
-
-          <div className="carousel-track">
-            {carouselImages.map((img, idx) => (
-              <div
-                key={idx}
-                className="flex-shrink-0 overflow-hidden rounded-xl"
-                style={{
-                  width: "220px",
-                  height: "220px",
-                  border: `1px solid ${theme.darkBorder}`,
-                }}
-              >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover"
-                  draggable={false}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-2">
           {options.map((opt) => (
@@ -253,4 +205,3 @@ export default function LandingPage() {
       </footer>
     </div>
   );
-}

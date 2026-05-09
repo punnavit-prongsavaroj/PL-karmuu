@@ -55,7 +55,7 @@ export default function LandingPage() {
 
   const options = [
     // ✨ ดึงเบอร์โทรจาก Database มาใส่
-    { id: "phone", icon: <Icon.Phone />, label: "โทรหาร้าน", sub: "พูดคุยกับพนักงานโดยตรง", action: () => alert(`โทร: ${storeConfig.phone}`) },
+    { id: "phone", icon: <Icon.Phone />, label: "โทรหาร้าน", sub: "พูดคุยกับพนักงานโดยตรง", action: () => makeCall(window.location.href = "tel:" + {storeConfig.phone}) },
     // ✨ ดึงลิงก์ Line จาก Database มาใส่
     { id: "line", icon: <Icon.Line />, label: "จองผ่าน LINE", sub: "สะดวกเข้าใจง่ายแชทผ่าน LINE ", action: () => window.open(storeConfig.lineOA, "_blank") },
     { id: "web", icon: <Icon.Web />, label: "จองผ่านเว็บไซต์", sub: "จองพร้อมสั่งอาหารล่วงหน้าทันทีรวดเร็ว", action: () => router.push("/book") },

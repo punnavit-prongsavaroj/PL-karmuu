@@ -53,25 +53,25 @@ const Icon = {
 const galleryImages = [
   {
     id: 1,
-    src: "/images/dish-1.jpg", // ใส่ path รูปจริงของคุณ
+    src: "/images/1.webp", // ใส่ path รูปจริงของคุณ
     alt: "ขาหมูเยอรมัน",
     title: "ขาหมูเยอรมัน",
   },
   {
     id: 2,
-    src: "/images/dish-2.jpg",
+    src: "/images/2.webp",
     alt: "ข้าวขาหมู",
     title: "ข้าวขาหมูสูตรต้นตำรับ",
   },
   {
     id: 3,
-    src: "/images/interior.jpg",
+    src: "/images/3.webp",
     alt: "บรรยากาศร้าน",
     title: "บรรยากาศภายในร้าน",
   },
   {
     id: 4,
-    src: "/images/dish-3.jpg",
+    src: "/images/4.webp",
     alt: "เมนูพิเศษ",
     title: "เมนูพิเศษประจำวัน",
   },

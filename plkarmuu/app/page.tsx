@@ -52,7 +52,6 @@ const Icon = {
 
 
 // duplicate for seamless loop
-const carouselImages = [...galleryImages, ...galleryImages];
 
 export default function LandingPage() {
   const router = useRouter();
@@ -97,12 +96,7 @@ export default function LandingPage() {
       action: () => window.open(storeConfig.googleMapsUrl, "_blank"),
     },
   ];
-const galleryImages = [
-  { id: 1, src: "/images/1.webp", alt: "ขาหมูเยอรมัน" },
-  { id: 2, src: "/images/2.webp", alt: "ข้าวขาหมู" },
-  { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
-  { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
-];
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ background: theme.dark }}>
       {/* Background Gradient */}
@@ -191,7 +185,13 @@ const galleryImages = [
             ))}
           </div>
         </div>
-
+const carouselImages = [...galleryImages, ...galleryImages];
+const galleryImages = [
+  { id: 1, src: "/images/1.webp", alt: "ขาหมูเยอรมัน" },
+  { id: 2, src: "/images/2.webp", alt: "ข้าวขาหมู" },
+  { id: 3, src: "/images/3.webp", alt: "บรรยากาศร้าน" },
+  { id: 4, src: "/images/4.webp", alt: "เมนูพิเศษ" },
+];
         {/* Buttons */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full max-w-3xl px-2">
           {options.map((opt) => (
@@ -238,7 +238,7 @@ const galleryImages = [
           ))}
         </div>
       </div>
-
+     
       {/* Footer */}
       <footer
         className="mt-12 py-8 text-center text-[10px] md:text-xs relative z-10"

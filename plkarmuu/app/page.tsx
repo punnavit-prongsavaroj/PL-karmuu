@@ -118,7 +118,7 @@ export default function LandingPage() {
         <div>
           <div className="text-2xl font-serif text-[#F5F0E8]">ปล</div>
           <div className="text-[10px] tracking-[4px] mt-1" style={{ color: theme.textSecondary }}>
-            RESTAURANT
+            ข้าวขาหมู
           </div>
         </div>
         <button

@@ -65,7 +65,7 @@ export default function LandingPage() {
 
   const [storeConfig, setStoreConfig] = useState({
     phone: "02-123-4567",
-    googleMapsUrl: "https://maps.app.goo.gl/your_map_link",
+    googleMapsUrl: "https://www.google.com/maps/dir/17.1573248,104.136704/ป.ล.+ข้าวขาหมู+87+ตําบล,+9+ถนน+เสรีไทย+ตำบล+ธาตุนาเวง+อำเภอเมืองสกลนคร+สกลนคร+47000/@17.1594336,104.1210227,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x313cf35d9ddfb5dd:0xc0821fdf1c367ac8!2m2!1d104.1259657!2d17.1582429?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D",
     openTime: "11:00",
     closeTime: "22:00",
   });
@@ -99,7 +99,7 @@ export default function LandingPage() {
       icon: <Icon.Map />,
       label: "แผนที่",
       sub: "Google Maps",
-      action: () => window.open(https://www.google.com/maps/dir/17.1573248,104.136704/ป.ล.+ข้าวขาหมู+87+ตําบล,+9+ถนน+เสรีไทย+ตำบล+ธาตุนาเวง+อำเภอเมืองสกลนคร+สกลนคร+47000/@17.1594336,104.1210227,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x313cf35d9ddfb5dd:0xc0821fdf1c367ac8!2m2!1d104.1259657!2d17.1582429?entry=ttu&g_ep=EgoyMDI2MDUwNi4wIKXMDSoASAFQAw%3D%3D),
+      action: () => window.open(storeConfig.googleMapsUrl, "_blank"),
     },
   ];
 
